@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/paddingItemRecycler"
-    android:background="?android:attr/selectableItemBackground"
+    android:paddingTop="@dimen/paddingItemRecycler"
+    android:paddingStart="@dimen/paddingItemRecycler"
+    android:paddingEnd="@dimen/paddingItemRecycler"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <TextView
-        android:id="@+id/tv_home_title"
+        android:id="@+id/tv_house_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,21 +21,32 @@
         />
 
     <TextView
-        android:id="@+id/tv_home_subtitle"
+        android:id="@+id/tv_house_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_house_title"
         android:textSize="@dimen/subTitle"
         tools:text="SubTitle"
         />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/im_house_region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_house_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/ic_arrow_right"
         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/im_house_region"
+        android:background="@drawable/divider"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

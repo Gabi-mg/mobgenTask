@@ -8,6 +8,4 @@ class CategoryUseCase(private val categoryRepository: CategoryRepository) {
     suspend fun run(): List<CategoryData> {
         return categoryRepository.getListCategory()
     }
-
-
 }

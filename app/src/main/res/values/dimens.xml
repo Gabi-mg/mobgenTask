@@ -4,4 +4,6 @@
     <dimen name="subTitle">10sp</dimen>
 
     <dimen name="paddingItemRecycler">10dp</dimen>
+    <dimen name="box_inset_layout_padding">0dp</dimen>
+
 </resources>
