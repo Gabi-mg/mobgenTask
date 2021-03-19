@@ -37,16 +37,16 @@ class HouseFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.runHouses()
-        viewModel.house.observe(viewLifecycleOwner, Observer { list ->
+        viewModel.getHouses().observe(viewLifecycleOwner, Observer { list ->
             houses.addAll(list)
             rv_houses.adapter?.notifyDataSetChanged()
-            viewModel.isLoading.value = false
+            viewModel.setIsLoading(false)
         })
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
+        viewModel.getErrorMessage().observe(viewLifecycleOwner, Observer { error ->
             Toast.makeText(context, error, Toast.LENGTH_LONG).show()
         })
 
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+        viewModel.getIsLoading().observe(viewLifecycleOwner, Observer { isLoading ->
             if(isLoading){
                 this.activity?.progress_bar?.visibility = View.VISIBLE
             }

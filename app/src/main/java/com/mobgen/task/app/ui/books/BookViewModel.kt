@@ -1,5 +1,6 @@
 package com.mobgen.task.app.ui.books
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mobgen.task.app.ui.base.BaseViewModel
@@ -10,10 +11,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class BookViewModel(private val bookUseCase: BookUseCase) : BaseViewModel() {
-    val books = MutableLiveData<List<BookData>>()
+    private val books = MutableLiveData<List<BookData>>()
 
     fun runBooks () {
-        isLoading.value = true
+        setIsLoading(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
@@ -24,5 +25,9 @@ class BookViewModel(private val bookUseCase: BookUseCase) : BaseViewModel() {
                 }
             }
         }
+    }
+
+    fun getBooks() : LiveData<List<BookData>>{
+        return books
     }
 }

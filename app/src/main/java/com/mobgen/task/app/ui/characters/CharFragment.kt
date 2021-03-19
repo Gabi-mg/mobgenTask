@@ -37,16 +37,16 @@ class CharFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.runBooks()
-        viewModel.chars.observe(viewLifecycleOwner, Observer { list ->
+        viewModel.getChars().observe(viewLifecycleOwner, Observer { list ->
             chars.addAll(list)
             rv_chars.adapter?.notifyDataSetChanged()
-            viewModel.isLoading.value = false
+            viewModel.setIsLoading(false)
         })
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
+        viewModel.getErrorMessage().observe(viewLifecycleOwner, Observer { error ->
             Toast.makeText(context, error, Toast.LENGTH_LONG).show()
         })
 
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+        viewModel.getIsLoading().observe(viewLifecycleOwner, Observer { isLoading ->
             if(isLoading){
                 this.activity?.progress_bar?.visibility = View.VISIBLE
             }

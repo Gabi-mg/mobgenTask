@@ -1,6 +1,7 @@
 package com.mobgen.task.app.ui.base
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.HttpException
@@ -8,8 +9,8 @@ import java.io.IOException
 
 abstract class BaseViewModel() : ViewModel(){
 
-    val errorMessage = MutableLiveData<String>()
-    var isLoading = MutableLiveData<Boolean>()
+    private val errorMessage = MutableLiveData<String>()
+    private var isLoading = MutableLiveData<Boolean>()
 
     fun setError(throwable: Throwable){
         when (throwable) {
@@ -25,5 +26,17 @@ abstract class BaseViewModel() : ViewModel(){
                 errorMessage.postValue("Uknown error")
             }
         }
+    }
+
+    fun getErrorMessage() : LiveData<String>{
+        return errorMessage
+    }
+
+    fun getIsLoading() : LiveData<Boolean>{
+        return isLoading
+    }
+
+    fun setIsLoading(value: Boolean){
+        isLoading.value = value
     }
 }

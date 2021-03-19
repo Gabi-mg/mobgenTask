@@ -1,5 +1,6 @@
 package com.mobgen.task.app.ui.characters
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mobgen.task.app.ui.base.BaseViewModel
@@ -10,10 +11,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CharViewModel(private val charUseCase: CharUseCase) : BaseViewModel() {
-    val chars = MutableLiveData<List<CharData>>()
+    private val chars = MutableLiveData<List<CharData>>()
 
     fun runBooks () {
-        isLoading.value = true
+        setIsLoading(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
@@ -24,5 +25,9 @@ class CharViewModel(private val charUseCase: CharUseCase) : BaseViewModel() {
                 }
             }
         }
+    }
+
+    fun getChars() : LiveData<List<CharData>>{
+        return chars
     }
 }

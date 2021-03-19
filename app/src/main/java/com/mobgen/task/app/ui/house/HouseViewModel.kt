@@ -1,5 +1,6 @@
 package com.mobgen.task.app.ui.house
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mobgen.task.app.ui.base.BaseViewModel
@@ -10,19 +11,23 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HouseViewModel(private val houseUseCase: HouseUseCase) : BaseViewModel() {
-    val house = MutableLiveData<List<HouseData>>()
+    private val houses = MutableLiveData<List<HouseData>>()
 
     fun runHouses () {
-        isLoading.value = true
+        setIsLoading(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     val result = houseUseCase.run()
-                    house.postValue(result)
+                    houses.postValue(result)
                 } catch (throwable: Throwable) {
                     setError(throwable)
                 }
             }
         }
+    }
+
+    fun getHouses() : LiveData<List<HouseData>>{
+        return houses
     }
 }

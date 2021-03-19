@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
 
 class SplashViewModel(private val categoryUseCase: CategoryUseCase) : BaseViewModel() {
 
-    val categories = MutableLiveData<List<CategoryData>>()
+    private val categories = MutableLiveData<List<CategoryData>>()
 
     fun runCategories () {
         viewModelScope.launch {
@@ -22,6 +22,10 @@ class SplashViewModel(private val categoryUseCase: CategoryUseCase) : BaseViewMo
                 }
             }
         }
+    }
+
+    fun getCategories(): LiveData<List<CategoryData>>{
+        return categories
     }
 
 }

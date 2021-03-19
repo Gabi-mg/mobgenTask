@@ -28,11 +28,11 @@ class SplashActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.runCategories()
-        viewModel.categories.observe(this, Observer { list ->
+        viewModel.getCategories().observe(this, Observer { list ->
             Session.setString(this, Preferences.CATEGORIES, Utils.toJson(list))
             goToMain()
         })
-        viewModel.errorMessage.observe(this, Observer { error ->
+        viewModel.getErrorMessage().observe(this, Observer { error ->
             Toast.makeText(this, error, LENGTH_LONG ).show()
         })
     }
